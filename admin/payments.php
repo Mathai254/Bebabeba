@@ -30,16 +30,16 @@
 				<a href="passengers.php">passengers</a>
 			</li>
 			<li class="selected">
-				<a href="payments.html">payments</a>
+				<a href="payments.php">payments</a>
 			</li>
 			<li>
-				<a href="bookings.html">bookings</a>
+				<a href="bookings.php">bookings</a>
 			</li>
 			<li>
 				<a href="reports.html">reports</a>
 			</li>
 			<li>
-				<a href="feedback.html">feedback</a>
+				<a href="feedback.php">feedback</a>
 			</li>
 			<li>
 				<a href="help.html">help</a>
@@ -88,6 +88,40 @@
 					</div>
 				</li>
 			</ul>-->
+			<?php
+				// Create connection
+				$conn = new mysqli("localhost","root","","bebabeba2");
+
+				// Check connection
+				if ($conn->connect_error) {
+			    	die("Connection failed: " . $conn->connect_error);
+				}
+				else
+				{
+					$sql = "SELECT booking_id, payment_date, payment_time, payableAmount, amountInserted FROM payments";
+
+					$result = $conn->query($sql);
+
+
+
+					/*if (mysql_num_rows($result)!=0false){*/
+					if($result->num_rows > 0) {
+						echo "<table width='700px' cellpadding='10px' cellspacing='10px'><tr><th>Booking Id</th><th>Payment Date</th><th>Payment Time</th><th>Payable Amount</th><th>amount paid</th></tr>";
+						// output data of each row
+						while($row = $result->fetch_assoc()) {
+							//$id = $row["payment_id"];
+							echo "<tr><td>" . $row["booking_id"]. "</td><td>" . $row["payment_date"]. "</td><td>" . $row["payment_time"]. "</td><td>" . $row["payableAmount"]. "</td><td>" . $row["amountInserted"]. "</td><td><a href='' name=''><button>Approve</button><a/></td></tr>";
+							}	
+						echo "</table>";
+					} 
+					else{
+						echo "0 results";
+					}
+
+
+				}
+				$conn->close();
+			?>
 		</div>
 	</div>
 	<div id="footer">

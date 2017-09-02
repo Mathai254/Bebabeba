@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Bebabeba application</title>
+	<title>Feedback - From users</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/mobile.css" media="screen and (max-width : 568px)">
 	<script type="text/javascript" src="../js/mobile.js"></script>
@@ -20,7 +20,7 @@
 		</form>
 		<br>
 		<ul id="navigation">
-			<li class="selected">
+			<li>
 				<a href="homepage.html">home</a>
 			</li>
 			<li>
@@ -38,47 +38,54 @@
 			<li>
 				<a href="reports.html">reports</a>
 			</li>
-			<li>
-				<a href="feedback.php">feedback</a>
+			<li class="selected">
+				<a href="feedback.html">feedback</a>
 			</li>
-
 			<li>
 				<a href="help.html">help</a>
 			</li>
-
 		</ul>
 	</div>
 	<div id="body">
-		<div id="featured">
-			<img src="images/background.jpg" alt="">
-			<div>
-				<h2>Welcome Administrator</h2>
-				<span>You can check registered users</span>
-				<span>Drivers or passengers and their details</span>
-				<span>You can also print desired reports.</span>
-				<a href="about.html" class="more">read more</a>
-			</div>
+		<h1><span>FEEDBACK</span></h1>
+		<div>
+        <img src="images/paymentpage.jpg" alt="">
+			<?php
+	
+				// Create connection
+				$conn = new mysqli("localhost","root","","bebabeba2");
+
+				// Check connection
+				if ($conn->connect_error) {
+			    	die("Connection failed: " . $conn->connect_error);
+				}
+				else
+				{
+					$sql = "SELECT booking_id, drivers_email, passengers_email, driver_rating, passenger_rating FROM bookings";
+
+					$result = $conn->query($sql);
+
+
+
+					/*if (mysql_num_rows($result)!=0false){*/
+					if($result->num_rows > 0) {
+						echo "<table width='700px' cellpadding='10px' cellspacing='10px'><tr><th>Booking ID</th><th>Driver Email</th><th>Passenger Email</th><th>Driver Rating Email</th><th>Passenger Rating</th></tr>";
+						// output data of each row
+						while($row = $result->fetch_assoc()) {
+							//$id = $row["driver_id"];
+							echo "<tr><td>" . $row["booking_id"]. "</td><td>" . $row["drivers_email"]. "</td><td>" . $row["passengers_email"]. "</td><td>" . $row["driver_rating"]. "</td><td>" . $row["passenger_rating"]. "</td></tr>";
+							}	
+						echo "</table>";
+					} 
+					else{
+						echo "0 results";
+					}
+
+
+				}
+				$conn->close();
+			?>
 		</div>
-		<ul>
-			<li>
-				<a href="drivers.php">
-					<img src="images/drivers.jpg" alt="">
-					<span>DRIVERS</span>
-				</a>
-			</li>
-			<li>
-				<a href="passengers.php">
-					<img src="images/passengers.jpg" alt="">
-					<span>PASSENGERS</span>
-				</a>
-			</li>
-			<li>
-				<a href="payments.html">
-					<img src="images/payments.jpg" alt="">
-					<span>PAYMENTS</span>
-				</a>
-			</li>
-		</ul>
 	</div>
 	<div id="footer">
 		<div>

@@ -1,4 +1,4 @@
-<!doctype html>
+x<!doctype html>
 <!-- Website Template by freewebsitetemplates.com -->
 <html>
 <head>
@@ -24,22 +24,22 @@
 				<a href="homepage.html">home</a>
 			</li>
 			<li class="selected">
-				<a href="drivers.html">drivers</a>
+				<a href="drivers.php">drivers</a>
 			</li>
 			<li>
 				<a href="passengers.php">passengers</a>
 			</li>
 			<li>
-				<a href="payments.html">payments</a>
+				<a href="payments.php">payments</a>
 			</li>
 			<li>
-				<a href="bookings.html">bookings</a>
+				<a href="bookings.php">bookings</a>
 			</li>
 			<li>
 				<a href="reports.html">reports</a>
 			</li>
 			<li>
-				<a href="feedback.html">feedback</a>
+				<a href="feedback.php">feedback</a>
 			</li>
 			<li>
 				<a href="help.html">help</a>
